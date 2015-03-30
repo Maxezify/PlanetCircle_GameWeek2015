@@ -13,12 +13,13 @@ public class EarthManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		EarthMovement();
 	}
 
 	void EarthMovement() {
 
-		transform.Rotate(0, rotSpeed * Time.deltaTime, 0, Space.World);
+		transform.Rotate(0, 0, rotSpeed * Time.deltaTime, Space.World);
 
 	}
 }

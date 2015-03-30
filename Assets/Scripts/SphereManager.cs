@@ -4,9 +4,13 @@ using System.Collections;
 public class SphereManager : MonoBehaviour {
 
 	private float rotSpeed = 75f;
+	private float velocitySpeed = 120f;
+	public Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
+
+		rb = GetComponent<Rigidbody>();
 	
 	}
 	
@@ -22,6 +26,7 @@ public class SphereManager : MonoBehaviour {
 		if (Input.GetKey(KeyCode.RightArrow))	{
 			
 			Debug.Log("Je passe");
+			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
 			transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
 			
 		}
@@ -29,6 +34,7 @@ public class SphereManager : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftArrow))	{
 			
 			Debug.Log("Je passe");
+			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
 			transform.Rotate(0, 0, -rotSpeed * Time.deltaTime);
 			
 		}
