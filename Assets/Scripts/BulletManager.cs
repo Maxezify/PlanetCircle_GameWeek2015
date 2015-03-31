@@ -6,10 +6,11 @@ public abstract class BulletManager : MonoBehaviour {
 	public int ProjectileSpeed = 1;
 	public GameObject ExplosionGameObject;
 	public GameObject StartEffectGameObject;
+	public GameObject StartInstanciated;
 
 	// Use this for initialization
-	void Start () {
-		Instantiate(StartEffectGameObject, transform.position, transform.rotation);
+	protected virtual void Start () {
+		StartInstanciated = Instantiate(StartEffectGameObject, transform.position, transform.rotation) as GameObject;
 	}
 	
 	// Update is called once per frame
