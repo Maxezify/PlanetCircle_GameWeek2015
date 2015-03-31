@@ -8,9 +8,10 @@ public abstract class Enemy : MonoBehaviour {
 	public int speed;
 	public GameObject shoot;
 	protected GameObject player;
+	
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -41,6 +42,5 @@ public abstract class Enemy : MonoBehaviour {
 	public virtual void Fire () {
 
 	}
-
 
 }
