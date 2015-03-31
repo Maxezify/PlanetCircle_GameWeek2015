@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour {
 	public int attackSpeed;
 	public int speed;
 	public GameObject shoot;
+	protected GameObject player;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,7 +17,17 @@ public abstract class Enemy : MonoBehaviour {
 	
 	}
 
+	protected void FindPlayer () {
+		player = GameObject.FindGameObjectWithTag ("Player");
+	}
+
+	public virtual void Move () {
+
+	}
+
 	public virtual void Fire () {
 
 	}
+
+
 }
