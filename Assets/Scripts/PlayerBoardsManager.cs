@@ -17,11 +17,13 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 		InputFire();
 
+		InputGetClone();
+
 	}
 
 	void InputFire()  {
 
-		if (Input.GetButtonDown("Fire1"))	{
+		if (Input.GetButtonDown("Fire"))	{
 
 			FireBullet();
 
@@ -35,6 +37,19 @@ public class PlayerBoardsManager : MonoBehaviour {
 		Instantiate(bulletPrefab, posis, transform.rotation);
 
 		}
+
+	void InputGetClone()	{
+
+		if (Input.GetButtonDown("ATouch"))	{
+
+
+
+
+
+		}
+
+
+	}
 
 	}
 
