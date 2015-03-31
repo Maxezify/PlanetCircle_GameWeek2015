@@ -21,8 +21,5 @@ public abstract class BulletManager : MonoBehaviour {
 	}
 
 	protected virtual void OnTriggerEnter ( Collider other )  {
-		ExplosionInstanciated = Instantiate(ExplosionGameObject, transform.position, transform.rotation) as GameObject;
-		ExplosionInstanciated.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-		DestroyObject(gameObject);
 }
 }

@@ -36,7 +36,7 @@ public class EarthManager : MonoBehaviour {
 	public void TakeDamage(int damages) {
 		life -= damages;
 		if (life <= Mathf.Floor(lifeMax/2)) {
-			GameManager.GetInstance().MidLifeBehavior();
+			//GameManager.GetInstance().MidLifeBehavior();
 			//Debug.Log("Midlife");
 		}
 		if (life <= Mathf.Floor(lifeMax/4)) {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticleLifeTime : MonoBehaviour {
+public class LifeTime : MonoBehaviour {
 
 	public float lifetime;
 	float timeBeforeDeath;

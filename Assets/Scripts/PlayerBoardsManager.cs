@@ -55,7 +55,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 	}
 	
 	public virtual void Death() {
-		DestroyObject(gameObject.transform.parent);
+		DestroyObject(gameObject);
 	}
 
 }

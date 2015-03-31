@@ -16,6 +16,14 @@ public abstract class PlayerBullet : BulletManager {
 		if (other.tag == "Earth")  {
 			other.gameObject.GetComponent<EarthManager>().TakeDamage(damages);
 		}
+		if(other.tag == "Player") {
+
+		}
+		else {
+			ExplosionInstanciated = Instantiate(ExplosionGameObject, transform.position, transform.rotation) as GameObject;
+			ExplosionInstanciated.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+			DestroyObject(gameObject);
+		}
 
 	}
 }
