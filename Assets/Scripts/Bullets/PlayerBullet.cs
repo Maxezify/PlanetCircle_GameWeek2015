@@ -5,7 +5,7 @@ public abstract class PlayerBullet : BulletManager {
 
 	protected override void Start() {
 		base.Start();
-		StartInstanciated.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
+		//StartInstanciated.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	protected override void OnTriggerEnter (Collider other) {
@@ -16,7 +16,7 @@ public abstract class PlayerBullet : BulletManager {
 		if (other.tag == "Earth")  {
 			other.gameObject.GetComponent<EarthManager>().TakeDamage(damages);
 		}
-		if(other.tag == "Player") {
+		if(other.tag == "Player" || other.tag == "PowerUp") {
 
 		}
 		else {

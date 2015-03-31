@@ -12,7 +12,10 @@ public abstract class BulletManager : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		StartInstanciated = Instantiate(StartEffectGameObject, transform.position, transform.rotation) as GameObject;
+		if(StartEffectGameObject != null)
+		{
+			StartInstanciated = Instantiate(StartEffectGameObject, transform.position, transform.rotation) as GameObject;
+		}
 	}
 	
 	// Update is called once per frame
