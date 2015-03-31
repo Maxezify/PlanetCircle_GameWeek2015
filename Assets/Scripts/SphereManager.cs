@@ -23,21 +23,11 @@ public class SphereManager : MonoBehaviour {
 
 	void InputManager() {
 		
-		if (Input.GetButton("Horizontal"))	{
-			
-			Debug.Log("Je passe");
-			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
-			transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
-			
-		}
 
-		if (Input.GetButton("Vertical"))	{
-			
-			Debug.Log("Je passe");
-			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
-			transform.Rotate(0, 0, -rotSpeed * Time.deltaTime);
-			
-		}
 
-}
+			//rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
+			transform.Rotate(0, 0, Input.GetAxis("Horizontal")*rotSpeed * Time.deltaTime);
+			
+
+	}
 }
