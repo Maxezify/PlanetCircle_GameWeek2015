@@ -6,7 +6,8 @@ public abstract class BulletManager : MonoBehaviour {
 	public int ProjectileSpeed = 1;
 	public GameObject ExplosionGameObject;
 	public GameObject StartEffectGameObject;
-	public GameObject StartInstanciated;
+	protected GameObject StartInstanciated;
+	protected GameObject ExplosionInstanciated;
 	public int damages;
 
 	// Use this for initialization
@@ -20,7 +21,8 @@ public abstract class BulletManager : MonoBehaviour {
 	}
 
 	protected virtual void OnTriggerEnter ( Collider other )  {
-		Instantiate(ExplosionGameObject, transform.position, transform.rotation);
+		ExplosionInstanciated = Instantiate(ExplosionGameObject, transform.position, transform.rotation) as GameObject;
+		ExplosionInstanciated.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		DestroyObject(gameObject);
 }
 }
