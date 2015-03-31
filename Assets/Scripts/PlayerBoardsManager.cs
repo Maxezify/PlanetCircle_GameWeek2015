@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerBoardsManager : MonoBehaviour {
 
 	public GameObject bulletPrefab;
-
+	public int life;
 
 	// Use this for initialization
 	void Start () {
@@ -42,14 +42,21 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 		if (Input.GetButtonDown("ATouch"))	{
 
-
-
-
-
 		}
 
 
 	}
-
+	public void TakeDamage(int damages) {
+		life -= damages;
+		
+		if (life <= 0) {
+			Death ();
+		}
 	}
+	
+	public virtual void Death() {
+		DestroyObject(gameObject.transform.parent);
+	}
+
+}
 
