@@ -6,7 +6,7 @@ public class EnemyRed : Enemy {
 
 	// Use this for initialization
 	void Start () {
-
+	
 	}
 	
 	// Update is called once per frame
@@ -22,10 +22,9 @@ public class EnemyRed : Enemy {
 	public override void Fire ()
 	{
 		base.Fire ();
-		Debug.Log ("fire");
 		Vector3 posis = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 		
-		Instantiate(shoot, posis, transform.rotation);
+		Instantiate(derp, posis, transform.rotation);
 		
 	}
 }
