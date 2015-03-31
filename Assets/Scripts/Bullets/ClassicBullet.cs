@@ -7,4 +7,11 @@ public class ClassicBullet : BulletManager {
 		base.Start();
 		StartInstanciated.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
 	}
+
+	protected override void OnTriggerEnter (Collider other) {
+		base.OnTriggerEnter (other);
+		if (other.tag == "Enemy")  {
+			other.gameObject.GetComponent<Enemy>().TakeDamage(damages);
+		}
+	}
 }

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyRed : Enemy {
-	public int timer = 0;
+public class EnemyBlue : Enemy {
 
 	// Use this for initialization
 	void Start () {

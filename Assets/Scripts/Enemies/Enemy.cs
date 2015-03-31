@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Enemy : MonoBehaviour {
 	public int life;
+	public int timer = 0;
 	public int attackSpeed;
 	public int speed;
 	public GameObject shoot;
@@ -23,6 +24,18 @@ public abstract class Enemy : MonoBehaviour {
 
 	public virtual void Move () {
 
+	}
+
+	public virtual void TakeDamage(int damages) {
+		life -= damages;
+
+		if (life <= 0) {
+			Death ();
+		}
+	}
+
+	public virtual void Death() {
+		DestroyObject(gameObject);
 	}
 
 	public virtual void Fire () {

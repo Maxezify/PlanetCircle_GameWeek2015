@@ -7,6 +7,7 @@ public abstract class BulletManager : MonoBehaviour {
 	public GameObject ExplosionGameObject;
 	public GameObject StartEffectGameObject;
 	public GameObject StartInstanciated;
+	public int damages;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -18,12 +19,8 @@ public abstract class BulletManager : MonoBehaviour {
 		transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
 	}
 
-	void OnTriggerEnter ( Collider other )  {
-		
-		if (other.tag == "Enemy" || other.tag == "Earth")  {
-			Instantiate(ExplosionGameObject, transform.position, transform.rotation);
-			DestroyObject(gameObject);
-			
-		}
+	protected virtual void OnTriggerEnter ( Collider other )  {
+		Instantiate(ExplosionGameObject, transform.position, transform.rotation);
+		DestroyObject(gameObject);
 }
 }
