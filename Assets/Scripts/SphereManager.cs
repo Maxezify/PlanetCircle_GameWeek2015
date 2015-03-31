@@ -23,7 +23,7 @@ public class SphereManager : MonoBehaviour {
 
 	void InputManager() {
 		
-		if (Input.GetKey(KeyCode.RightArrow))	{
+		if (Input.GetKey(KeyCode.LeftArrow))	{
 			
 			Debug.Log("Je passe");
 			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
@@ -31,7 +31,7 @@ public class SphereManager : MonoBehaviour {
 			
 		}
 
-		if (Input.GetKey(KeyCode.LeftArrow))	{
+		if (Input.GetKey(KeyCode.RightArrow))	{
 			
 			Debug.Log("Je passe");
 			rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
