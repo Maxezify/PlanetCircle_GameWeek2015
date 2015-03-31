@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletManager : MonoBehaviour {
+public abstract class BulletManager : MonoBehaviour {
 
-	private int ProjectileSpeed = 1;
+	public int ProjectileSpeed = 1;
+	public GameObject ExplosionGameObject;
+	public GameObject StartEffectGameObject;
 
 	// Use this for initialization
 	void Start () {
-	
+		Instantiate(StartEffectGameObject, transform.position, transform.rotation);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
-
-
-	
 	}
 
 	void OnTriggerEnter ( Collider other )  {
 		
-		if (other.tag == "Earth")  {
-			
+		if (other.tag == "Satelit" || other.tag == "Earth")  {
+			Instantiate(ExplosionGameObject, transform.position, transform.rotation);
 			DestroyObject(gameObject);
 			
 		}
