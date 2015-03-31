@@ -24,7 +24,7 @@ public class EnemyRed : Enemy {
 		base.Fire ();
 		Vector3 posis = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 		
-		Instantiate(derp, posis, transform.rotation);
+		Instantiate(shoot, posis, transform.rotation);
 		
 	}
 }

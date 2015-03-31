@@ -5,8 +5,7 @@ public abstract class Enemy : MonoBehaviour {
 	public int life;
 	public int attackSpeed;
 	public int speed;
-	public GameObject derp;
-	protected GameObject shootInstanciated;
+	public GameObject shoot;
 	protected GameObject player;
 	// Use this for initialization
 	void Start () {
