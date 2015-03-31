@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\test menu\Assets\KeyListener.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerBoardsManager.cs">
     <Files>
-      <File FileName="..\test menu\Assets\KeyListener.cs" Line="8" Column="29" />
+      <File FileName="Assets\PlayerBoardsManager.cs" Line="41" Column="31" />
+      <File FileName="Assets\Scripts\SphereManager.cs" Line="7" Column="34" />
+      <File FileName="Assets\Scripts\EarthManager.cs" Line="22" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
