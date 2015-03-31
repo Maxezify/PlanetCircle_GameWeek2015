@@ -19,7 +19,7 @@ public abstract class BulletManager : MonoBehaviour {
 
 	void OnTriggerEnter ( Collider other )  {
 		
-		if (other.tag == "Satelit" || other.tag == "Earth")  {
+		if (other.tag == "Enemy" || other.tag == "Earth")  {
 			Instantiate(ExplosionGameObject, transform.position, transform.rotation);
 			DestroyObject(gameObject);
 			
