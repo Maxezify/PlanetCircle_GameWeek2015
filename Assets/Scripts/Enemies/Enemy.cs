@@ -14,8 +14,8 @@ public abstract class Enemy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	protected virtual void Update () {
+		Move ();
 	}
 
 	protected void FindPlayer () {
@@ -23,7 +23,7 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Move () {
-
+		transform.parent.Rotate(0, 0, speed * Time.deltaTime);
 	}
 
 	public virtual void TakeDamage(int damages) {

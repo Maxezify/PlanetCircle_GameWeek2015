@@ -13,5 +13,9 @@ public class ClassicBullet : BulletManager {
 		if (other.tag == "Enemy")  {
 			other.gameObject.GetComponent<Enemy>().TakeDamage(damages);
 		}
+		if (other.tag == "Earth")  {
+			other.gameObject.GetComponent<EarthManager>().TakeDamage(damages);
+		}
+
 	}
 }
