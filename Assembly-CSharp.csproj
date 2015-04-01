@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Health.cs" />
      <Compile Include="Assets\Scripts\BulletManager.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletsFoe\GatlingFoe.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletsPlayer\StandardBulletPlayer.cs" />
@@ -58,6 +59,8 @@
      <Compile Include="Assets\Scripts\PlayerBoardsManager.cs" />
      <Compile Include="Assets\Scripts\PowerUpDrop.cs" />
      <Compile Include="Assets\Scripts\SphereManager.cs" />
+     <Compile Include="Assets\Scripts\UIManager.cs" />
+     <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
