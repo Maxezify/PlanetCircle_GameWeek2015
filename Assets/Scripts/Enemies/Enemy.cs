@@ -25,7 +25,10 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Move () {
-		transform.root.Rotate(0, 0, speed * Time.deltaTime);
+		if(transform.root != null)
+		{
+			transform.root.Rotate(0, 0, speed * Time.deltaTime);
+		}
 	}
 
 	public virtual void TakeDamage(int damages) {
