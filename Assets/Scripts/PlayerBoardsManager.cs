@@ -10,9 +10,9 @@ public class PlayerBoardsManager : MonoBehaviour {
 	public GameObject[] cloneArray = new GameObject[3];
 	protected GameObject cloneInstanciated;
 	public bool isClone;
+
 	// Use this for initialization
 	void Start () {
-
 	
 	}
 	
@@ -87,7 +87,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 	} */
 	public void TakeDamage(int damages) {
 		life -= damages;
-		
+		HealthManager.GetInstance ().UpdateLife ();
 		if (life <= 0) {
 			Death ();
 		}
