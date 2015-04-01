@@ -5,6 +5,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 	public GameObject bulletPrefab;
 	public int life;
+	public string actualBonus;
 
 	// Use this for initialization
 	void Start () {

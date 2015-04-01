@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour {
 	public int attackSpeed;
 	public int speed;
 	public GameObject shoot;
+	public GameObject dropPowerUp;
 	protected GameObject player;
 	
 	// Use this for initialization
@@ -36,6 +37,10 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Death() {
+		if(dropPowerUp != null)
+		{
+			Instantiate(dropPowerUp,transform.position, Quaternion.identity);
+		}
 		DestroyObject(gameObject);
 	}
 
