@@ -20,4 +20,7 @@ public abstract class FoeBullet : BulletManager {
 
 		}
 	}
+	protected virtual void Update () {
+		transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
+	}
 }
