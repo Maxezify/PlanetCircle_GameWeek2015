@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bullets\PlayerBullet.cs">
+    <Files>
+      <File FileName="Assets\Scripts\EarthManager.cs" Line="39" Column="6" />
+      <File FileName="Assets\Scripts\BulletManager.cs" Line="17" Column="4" />
+      <File FileName="Assets\Scripts\PlayerBoardsManager.cs" Line="8" Column="23" />
+      <File FileName="Assets\Scripts\Enemies\Enemy.cs" Line="42" Column="69" />
+      <File FileName="Assets\Scripts\Bullets\PlayerBullet.cs" Line="8" Column="5" />
+      <File FileName="Assets\Scripts\Bullets\BulletsPlayer\StandardBulletPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Bullets\BulletsFoe\GatlingFoe.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemies\EnemyBlue.cs" Line="27" Column="47" />
+      <File FileName="Assets\Scripts\PowerUpDrop.cs" Line="20" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
