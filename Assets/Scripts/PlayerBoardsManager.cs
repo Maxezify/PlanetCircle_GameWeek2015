@@ -29,7 +29,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 	void InputFire()  {
 
-		if (Input.GetButtonDown("Fire"))	{
+		if (Input.GetButtonDown("Fire") || Input.GetAxis("FirePad")>0)	{
 
 			FireBullet();
 
@@ -39,13 +39,13 @@ public class PlayerBoardsManager : MonoBehaviour {
 	void InputClone()  {
 		if (!isClone) {
 			if (life > 1) {
-				if (Input.GetKeyDown (KeyCode.A)) {
+				if (Input.GetKeyDown (KeyCode.A)||Input.GetButtonDown("XPad")) {
 					PlaceClone(0);
 				}
-				if (Input.GetKeyDown (KeyCode.Z)) {
+				if (Input.GetKeyDown (KeyCode.Z)||Input.GetButtonDown("YPad")) {
 					PlaceClone(1);
 				}
-				if (Input.GetKeyDown (KeyCode.E)) {
+				if (Input.GetKeyDown (KeyCode.E)||Input.GetButtonDown("BPad")) {
 					PlaceClone(2);
 				}
 			}
