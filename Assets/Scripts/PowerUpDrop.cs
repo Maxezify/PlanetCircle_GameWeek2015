@@ -4,6 +4,7 @@ using System.Collections;
 public class PowerUpDrop : MonoBehaviour {
 
 	public GameObject PowerUpBullet;
+	protected GameObject[] clonesArray;
 	// Use this for initialization
 	void Start () {
 		transform.LookAt(GameObject.FindGameObjectWithTag("Earth").transform.position);
@@ -16,7 +17,11 @@ public class PowerUpDrop : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if(other.tag == "Player") {
-			other.GetComponent<PlayerBoardsManager>().bulletPrefab = PowerUpBullet;
+			clonesArray = GameObject.FindGameObjectsWithTag("Player");
+			for(int i = 0; i < clonesArray.Length; i++)
+			{
+				clonesArray[i].GetComponent<PlayerBoardsManager>().bulletPrefab = PowerUpBullet;
+			}
 			Destroy(gameObject);
 		}
 	}
