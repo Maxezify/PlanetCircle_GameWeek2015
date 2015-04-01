@@ -27,6 +27,7 @@ public class SphereManager : MonoBehaviour {
 
 			//rb.AddTorque(0, 0, velocitySpeed * Time.deltaTime);
 			transform.Rotate(0, 0, Input.GetAxis("Horizontal")*rotSpeed * Time.deltaTime);
+			transform.Rotate(0, 0, Input.GetAxis("HorizontalPad")*rotSpeed * Time.deltaTime);
 			
 
 	}
