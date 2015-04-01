@@ -16,7 +16,7 @@ public abstract class PlayerBullet : BulletManager {
 		if (other.tag == "Earth")  {
 			other.gameObject.GetComponent<EarthManager>().TakeDamage(damages);
 		}
-		if(other.tag == "Player" || other.tag == "PowerUp") {
+		if(other.tag == "Player" || other.tag == "PowerUp" || other.tag == "Bullet") {
 
 		}
 		else {
