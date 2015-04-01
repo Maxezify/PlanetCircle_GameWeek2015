@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyRed : Enemy {
+public class EnemyTypeStandard : Enemy {
 	// Use this for initialization
 	void Start () {
 	
