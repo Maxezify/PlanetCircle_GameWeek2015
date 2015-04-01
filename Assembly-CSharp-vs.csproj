@@ -49,6 +49,7 @@
      <Compile Include="Assets\Health.cs" />
      <Compile Include="Assets\Scripts\BulletManager.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletsFoe\GatlingFoe.cs" />
+     <Compile Include="Assets\Scripts\Bullets\BulletsPlayer\RocketBulletPlayer.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletsPlayer\StandardBulletPlayer.cs" />
      <Compile Include="Assets\Scripts\Bullets\FoeBullet.cs" />
      <Compile Include="Assets\Scripts\Bullets\PlayerBullet.cs" />
