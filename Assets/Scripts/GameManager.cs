@@ -85,8 +85,6 @@ public class GameManager : MonoBehaviour
 			gameState = StateType.RESPAWN;
 			break;
 		case StateType.RESPAWN:
-			//Restart a changer
-			//ChangeLevel(currentLevel);
 			StartCoroutine(ChangeLevel(currentLevel));
 			break;
 		case StateType.PAUSE:
@@ -96,8 +94,8 @@ public class GameManager : MonoBehaviour
 			gameState = StateType.PLAYING;
 			break;
 		case StateType.NEXTLEVEL:
-			//ChangeLevel(PlayerPrefs.GetInt("Level"));
-			ChangeLevel(0);
+			//StartCoroutine(ChangeLevel(PlayerPrefs.GetInt("Level")));
+			StartCoroutine(ChangeLevel(0));
 			break;
 		default:
 			break;
@@ -105,8 +103,8 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void GameStart(int currentLevel){
-		Debug.Log ("HEY");
 		//Au start de chaque niveau, utilisé pour initialiser les vagues and shit
+		SpawnPlanet(currentLevel);
 		SpawnEnnemies(currentLevel);
 		gameState = StateType.PLAYING;
 	}
@@ -121,11 +119,16 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void SpawnEnnemies(int nbr){
+		//nbr == currentlevel pour le moment
 		for(int i = 0; i< nbr+1;i++){
-			//CHANGER LA ROTATION DE DEPART
+			//!!CHANGER LA ROTATION DE DEPART
 			GameObject go = Instantiate(Enemies[(int)Mathf.Floor(Random.Range(0, Enemies.Count))], new Vector3(0,0,0), new Quaternion(0,0,90,0)) as GameObject;
 			Pool.Add (go);
 		}
+	}
+
+	public void SpawnPlanet(int currentLevel){
+		//!!PLANETE ALEATOIRE VISUELLEMENT PV en fonction du currentLevel
 	}
 
 	IEnumerator waitBeforeRespawn(){
@@ -140,8 +143,6 @@ public class GameManager : MonoBehaviour
 		Fade.Out();
 	}
 
-
-
 	IEnumerator ChangeLevel(int levelName){
 		currentLevel = levelName;
 		AsyncOperation operation = Application.LoadLevelAsync(levelName);
@@ -149,5 +150,8 @@ public class GameManager : MonoBehaviour
 		yield return operation;
 	}
 
+	IEnumerator Spawner(){
+		//!!welp
+	}
 
 }
