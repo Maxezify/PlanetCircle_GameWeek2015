@@ -5,7 +5,11 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour 
 {
 
-	private int currentLevel = 0;
+	private int currentLevel;
+
+	public List<GameObject> Enemies = new List<GameObject>();
+	private List<GameObject> Pool = new List<GameObject>();
+
 	static StateType gameState = StateType.GAMESTART;
 
 	private static GameManager _instance;
@@ -36,8 +40,19 @@ public class GameManager : MonoBehaviour
 		GAMESTART,
 		RESPAWN,
 		MENU,         
-		OPTIONS       
+		OPTIONS,
+		NEXTLEVEL
 	};
+	void Start(){
+
+		if(PlayerPrefs.HasKey("Level")){
+			currentLevel = PlayerPrefs.GetInt("Level");
+		}else{
+			PlayerPrefs.SetInt("Level", 0);
+			currentLevel = PlayerPrefs.GetInt("Level");
+		}
+		gameState = StateType.GAMESTART;
+	}
 
 	void Awake() 
 	{
@@ -61,6 +76,7 @@ public class GameManager : MonoBehaviour
 		
 		switch(gameState){
 		case StateType.GAMESTART:
+			GameStart(currentLevel);
 			break;
 		case StateType.PLAYING:
 			break;
@@ -70,9 +86,8 @@ public class GameManager : MonoBehaviour
 			break;
 		case StateType.RESPAWN:
 			//Restart a changer
-			Application.LoadLevel(0);
-			//StartCoroutine(ChangeLevel(0));
-			gameState = StateType.PLAYING;
+			//ChangeLevel(currentLevel);
+			StartCoroutine(ChangeLevel(currentLevel));
 			break;
 		case StateType.PAUSE:
 			
@@ -80,16 +95,37 @@ public class GameManager : MonoBehaviour
 		case StateType.UNPAUSE:
 			gameState = StateType.PLAYING;
 			break;
-		case StateType.MENU:
-			
+		case StateType.NEXTLEVEL:
+			//ChangeLevel(PlayerPrefs.GetInt("Level"));
+			ChangeLevel(0);
 			break;
 		default:
 			break;
 		}  
 	}
 
+	public void GameStart(int currentLevel){
+		Debug.Log ("HEY");
+		//Au start de chaque niveau, utilisé pour initialiser les vagues and shit
+		SpawnEnnemies(currentLevel);
+		gameState = StateType.PLAYING;
+	}
+
 	public static void GameOver(){
 		gameState = StateType.GAMEOVER;
+	}
+
+	public static void GG(){
+		PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level")+1 );
+		gameState = StateType.NEXTLEVEL;
+	}
+
+	public void SpawnEnnemies(int nbr){
+		for(int i = 0; i< nbr+1;i++){
+			//CHANGER LA ROTATION DE DEPART
+			GameObject go = Instantiate(Enemies[(int)Mathf.Floor(Random.Range(0, Enemies.Count))], new Vector3(0,0,0), new Quaternion(0,0,90,0)) as GameObject;
+			Pool.Add (go);
+		}
 	}
 
 	IEnumerator waitBeforeRespawn(){
@@ -104,12 +140,13 @@ public class GameManager : MonoBehaviour
 		Fade.Out();
 	}
 
+
+
 	IEnumerator ChangeLevel(int levelName){
 		currentLevel = levelName;
 		AsyncOperation operation = Application.LoadLevelAsync(levelName);
-		//gameState = StateType.GAMESTART;
+		gameState = StateType.GAMESTART;
 		yield return operation;
-		
 	}
 
 

@@ -3,6 +3,10 @@ using System.Collections;
 
 public abstract class PlayerBullet : BulletManager {
 
+	void OnBecameInvisible() {
+		Destroy(gameObject);
+	}
+
 	protected override void Start() {
 		base.Start();
 		//StartInstanciated.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;

@@ -6,6 +6,10 @@ public abstract class FoeBullet : BulletManager {
 	protected override void Start() {
 		base.Start();
 	}
+
+	void OnBecameInvisible() {
+		Destroy(gameObject);
+	}
 	
 	protected override void OnTriggerEnter (Collider other) {
 		base.OnTriggerEnter (other);
