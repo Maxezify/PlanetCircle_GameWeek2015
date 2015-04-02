@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
 	public List<GameObject> Enemies = new List<GameObject>();
 	private List<GameObject> Pool = new List<GameObject>();
+	public GameObject planet;
+	private float timer = 0;
 
 	static StateType gameState = StateType.GAMESTART;
 
@@ -48,10 +50,10 @@ public class GameManager : MonoBehaviour
 		if(PlayerPrefs.HasKey("Level")){
 			currentLevel = PlayerPrefs.GetInt("Level");
 		}else{
-			PlayerPrefs.SetInt("Level", 0);
+			PlayerPrefs.SetInt("Level", 1);
 			currentLevel = PlayerPrefs.GetInt("Level");
 		}
-		gameState = StateType.GAMESTART;
+		//gameState = StateType.GAMESTART;
 	}
 
 	void Awake() 
@@ -100,6 +102,15 @@ public class GameManager : MonoBehaviour
 		default:
 			break;
 		}  
+
+
+		timer+=0.1f;
+
+		if(timer >= currentLevel+20f){
+			SpawnEnnemies(currentLevel);
+			timer = 0;
+		}
+
 	}
 
 	public void GameStart(int currentLevel){
@@ -122,13 +133,17 @@ public class GameManager : MonoBehaviour
 		//nbr == currentlevel pour le moment
 		for(int i = 0; i< nbr+1;i++){
 			//!!CHANGER LA ROTATION DE DEPART
-			GameObject go = Instantiate(Enemies[(int)Mathf.Floor(Random.Range(0, Enemies.Count))], new Vector3(0,0,0), new Quaternion(0,0,90,0)) as GameObject;
+			Quaternion quat = Quaternion.identity;
+			quat.eulerAngles = new Vector3(0,0,Random.Range (0,360f));
+			GameObject go = Instantiate(Enemies[(int)Mathf.Floor(Random.Range(0, Enemies.Count))], new Vector3(0,0,0), quat) as GameObject;
 			Pool.Add (go);
 		}
 	}
 
 	public void SpawnPlanet(int currentLevel){
 		//!!PLANETE ALEATOIRE VISUELLEMENT PV en fonction du currentLevel
+		GameObject go = Instantiate(planet) as GameObject;
+		go.GetComponent<EarthManager>().lifeMax = currentLevel+3;
 	}
 
 	IEnumerator waitBeforeRespawn(){
@@ -136,22 +151,27 @@ public class GameManager : MonoBehaviour
 		Fade.In();
 
 		yield return new WaitForSeconds(1.0f);
-		
+
 		yield return new WaitForSeconds(1.0f);
 		
 		yield return new WaitForSeconds(1.0f);
+
 		Fade.Out();
+
 	}
 
 	IEnumerator ChangeLevel(int levelName){
+		Pool.Clear ();
 		currentLevel = levelName;
 		AsyncOperation operation = Application.LoadLevelAsync(levelName);
-		gameState = StateType.GAMESTART;
 		yield return operation;
 	}
 
-	IEnumerator Spawner(){
-		//!!welp
+	void OnLevelWasLoaded(int lvl){
+		if(lvl == currentLevel){
+			timer = 0;
+			gameState = StateType.GAMESTART;
+		}
 	}
 
 }

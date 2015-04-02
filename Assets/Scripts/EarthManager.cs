@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EarthManager : MonoBehaviour {
 
-	public float rotSpeed = -10f;
+	public float rotSpeed;
 	public int life;
 	public int lifeMax;
+	public List<Material> Surface = new List<Material>();
+	public List<Material> Shaders = new List<Material>();
 
 	private static EarthManager instance;
 
@@ -17,13 +20,29 @@ public class EarthManager : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		lifeMax = life;
+		float rand = Random.Range (0,1f);
+		bool projector;
+		if(rand >=0.5f)
+			projector = true;
+		else
+			projector = false;
+
+		transform.GetChild(0).gameObject.SetActive(projector);
+
+		if(projector){
+			Debug.Log (transform.GetChild(0).GetComponent<Projector>().material.shader);
+			transform.GetChild(0).GetComponent<Projector>().material = Shaders[(int)Mathf.Floor(Random.Range (0,Shaders.Count-1))];
+		}
+
+		GetComponent<Renderer>().material = Surface[(int)Mathf.Floor(Random.Range (0,Surface.Count-1))];
+		rotSpeed = Random.Range(-10f,10f);
+		life = lifeMax;
 		instance = this;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		EarthMovement();
 	}
 
@@ -44,6 +63,7 @@ public class EarthManager : MonoBehaviour {
 		}
 		if (life <= 0) {
 			Debug.Log("You Win");
+			Destroy(gameObject);
 			GameManager.GameOver();
 		}
 	}
