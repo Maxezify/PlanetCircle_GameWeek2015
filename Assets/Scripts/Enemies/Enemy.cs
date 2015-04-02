@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour {
 	public GameObject spawnEffect;
 	
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		if(spawnEffect != null) {
 			Instantiate(spawnEffect, transform.position, transform.rotation);
 		}

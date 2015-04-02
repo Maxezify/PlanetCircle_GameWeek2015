@@ -18,8 +18,8 @@ public class EnemyTypeStandard : Enemy {
 	{
 		base.Fire ();
 		Vector3 posis = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-		
-		Instantiate(shoot, posis, transform.rotation);
-		
+		if(shoot != null) {
+			Instantiate(shoot, posis, transform.rotation);
+		}
 	}
 }

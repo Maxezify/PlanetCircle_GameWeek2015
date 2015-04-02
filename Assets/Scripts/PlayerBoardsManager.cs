@@ -116,7 +116,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 			fireRate = 45;
 		}
 		if (bulletPrefab.name == "TripleBulletPlayer") {
-			fireRate = 30;
+			fireRate = 20;
 		}
 	}
 }
