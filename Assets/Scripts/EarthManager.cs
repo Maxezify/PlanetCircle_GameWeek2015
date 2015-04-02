@@ -7,9 +7,18 @@ public class EarthManager : MonoBehaviour {
 	public int life;
 	public int lifeMax;
 
+	private static EarthManager instance;
+
+	public static EarthManager GetInstance()
+	{
+		if (instance == null)
+			instance = new EarthManager();
+		return instance;
+	}
 	// Use this for initialization
 	void Start () {
 		lifeMax = life;
+		instance = this;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +36,8 @@ public class EarthManager : MonoBehaviour {
 	public void TakeDamage(int damages) {
 		life -= damages;
 		if (life <= Mathf.Floor(lifeMax/2)) {
-			Debug.Log("Midlife");
+			//GameManager.GetInstance().MidLifeBehavior();
+			//Debug.Log("Midlife");
 		}
 		if (life <= Mathf.Floor(lifeMax/4)) {
 			Debug.Log("Quarterlife ?");

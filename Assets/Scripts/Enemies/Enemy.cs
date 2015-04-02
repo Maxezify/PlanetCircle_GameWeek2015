@@ -7,10 +7,12 @@ public abstract class Enemy : MonoBehaviour {
 	public int attackSpeed;
 	public int speed;
 	public GameObject shoot;
-	protected GameObject player;
+	public GameObject dropPowerUp;
+	public GameObject player;
+	public bool lookAtThePlayer;
+	
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -19,11 +21,14 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	protected void FindPlayer () {
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
 	}
 
 	public virtual void Move () {
-		transform.parent.Rotate(0, 0, speed * Time.deltaTime);
+		if(transform.root != null)
+		{
+			transform.root.Rotate(0, 0, speed * Time.deltaTime);
+		}
 	}
 
 	public virtual void TakeDamage(int damages) {
@@ -35,12 +40,15 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Death() {
-		DestroyObject(gameObject);
+		if(dropPowerUp != null)
+		{
+			Instantiate(dropPowerUp,transform.position, Quaternion.identity);
+		}
+		DestroyObject(transform.root.gameObject);
 	}
 
 	public virtual void Fire () {
 
 	}
-
 
 }

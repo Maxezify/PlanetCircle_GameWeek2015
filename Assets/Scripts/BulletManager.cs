@@ -12,17 +12,17 @@ public abstract class BulletManager : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		StartInstanciated = Instantiate(StartEffectGameObject, transform.position, transform.rotation) as GameObject;
+		if(StartEffectGameObject != null)
+		{
+			StartInstanciated = Instantiate(StartEffectGameObject, transform.position, transform.rotation) as GameObject;
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 		transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
 	}
 
 	protected virtual void OnTriggerEnter ( Collider other )  {
-		ExplosionInstanciated = Instantiate(ExplosionGameObject, transform.position, transform.rotation) as GameObject;
-		ExplosionInstanciated.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-		DestroyObject(gameObject);
 }
 }
