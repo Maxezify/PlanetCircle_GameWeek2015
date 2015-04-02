@@ -44,7 +44,8 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Death() {
-		if(dropPowerUp != null)
+		float isDroped = Random.Range(0,10);
+		if(dropPowerUp != null && isDroped > 7)
 		{
 			Instantiate(dropPowerUp,transform.position, Quaternion.identity);
 		}
