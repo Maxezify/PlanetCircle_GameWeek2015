@@ -3,9 +3,6 @@ using System.Collections;
 
 public class OnclickButtonMenu : MonoBehaviour {
 
-	public GameObject ButtonNew;
-	public GameObject ButtonContinue;
-
 	// Use this for initialization
 	void Start () {
 	
@@ -13,14 +10,13 @@ public class OnclickButtonMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		InputButton();
+		
 
 		}
 
-	void InputButton()	{
+	/*void InputButton()	{
 
-		if (Input.GetButtonDown("Space"))/* || Input.GetButtonDown("APad"))*/	{
+		if (Input.GetButtonDown("Space"))/* || Input.GetButtonDown("APad"))	{
 			
 			Debug.Log("Je click");
 			
@@ -33,8 +29,7 @@ public class OnclickButtonMenu : MonoBehaviour {
 			Instantiate(ButtonContinue, PlacementBoutonContinue, transform.rotation);
 
 			
-		}
+		}*/
 
-	}
 
 }
