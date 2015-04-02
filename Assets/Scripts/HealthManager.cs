@@ -4,11 +4,8 @@ using System.Collections;
 public class HealthManager : MonoBehaviour {
 	private int life;
 	private static HealthManager instance;
-	private int currentHealth;
 
 	public GameObject image;
-	public Sprite shipSprite;
-	public Sprite heartSprite;
 	public GameObject StartEffectGameObject;
 	private GameObject StartInstanciated;
 
