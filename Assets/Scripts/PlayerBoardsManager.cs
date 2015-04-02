@@ -38,7 +38,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 	void InputClone()  {
 		if (!isClone) {
-			if (life > 1) {
+			//if (life > 1) {
 				if (Input.GetKeyDown (KeyCode.A)||Input.GetButtonDown("XPad")) {
 					PlaceClone(0);
 				}
@@ -48,7 +48,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.E)||Input.GetButtonDown("BPad")) {
 					PlaceClone(2);
 				}
-			}
+			//}
 		}
 	}
 
@@ -62,12 +62,16 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 	void PlaceClone (int i) {
 		if (cloneArray[i] == null) {
-			cloneArray[i] = CreateClone (clonePlaceArray [i]);
-			life --;
+			if (life > 1) {
+				cloneArray[i] = CreateClone (clonePlaceArray [i]);
+				life --;
+				HealthManager.GetInstance().RemoveHeart(life);
+			}
 		} else {
 			DestroyObject(cloneArray[i]);
 			cloneArray[i] = null;
 			life ++;
+			HealthManager.GetInstance().AddHeart(life-1);
 		}
 	}
 
@@ -78,16 +82,13 @@ public class PlayerBoardsManager : MonoBehaviour {
 		cloneInstanciated.GetComponent<PlayerBoardsManager> ().life = 1;
 		return cloneInstanciated;
 	}
-	/*
-	void InputGetClone()	{
 
-		if (Input.GetButtonDown("ATouch"))	{
-
-		}
-	} */
 	public void TakeDamage(int damages) {
+
 		life -= damages;
-		HealthManager.GetInstance ().UpdateLife ();
+		if (!isClone) HealthManager.GetInstance ().RemoveHeart (life);
+
+		//HealthManager.GetInstance ().LoseLife ();
 		if (life <= 0) {
 			Death ();
 		}

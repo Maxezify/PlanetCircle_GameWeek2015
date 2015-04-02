@@ -10,9 +10,13 @@ public abstract class Enemy : MonoBehaviour {
 	public GameObject dropPowerUp;
 	public GameObject player;
 	public bool lookAtThePlayer;
+	public GameObject spawnEffect;
 	
 	// Use this for initialization
 	void Start () {
+		if(spawnEffect != null) {
+			Instantiate(spawnEffect, transform.position, transform.rotation);
+		}
 	}
 	
 	// Update is called once per frame
