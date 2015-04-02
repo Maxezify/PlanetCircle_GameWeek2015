@@ -34,6 +34,7 @@ public class EarthManager : MonoBehaviour {
 		}
 		if (life <= 0) {
 			Debug.Log("You Win");
+			GameManager.GameOver();
 		}
 	}
 }
