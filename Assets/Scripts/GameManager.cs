@@ -150,8 +150,5 @@ public class GameManager : MonoBehaviour
 		yield return operation;
 	}
 
-	IEnumerator Spawner(){
-		//!!welp
-	}
 
 }
