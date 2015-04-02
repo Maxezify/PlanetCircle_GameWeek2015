@@ -10,6 +10,10 @@ public class PlayerBoardsManager : MonoBehaviour {
 	public GameObject[] cloneArray = new GameObject[3];
 	protected GameObject cloneInstanciated;
 	public bool isClone;
+	private int fireTimer = 0;
+	public int fireRate;
+	private int clonetimer = 0;
+	public int cloneRate;
 
 	// Use this for initialization
 	void Start () {
@@ -28,28 +32,32 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 
 	void InputFire()  {
-
-		if (Input.GetButtonDown("Fire") || Input.GetAxis("FirePad")>0)	{
-
-			FireBullet();
-
-		}
+		if (fireTimer >= fireRate) {
+			if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
+				FireBullet ();
+				fireTimer = 0;
+			} 
+		} else fireTimer ++;
 	}
 
 	void InputClone()  {
-		if (!isClone) {
-			//if (life > 1) {
+		if (clonetimer >= cloneRate) {
+			if (!isClone) {
 				if (Input.GetKeyDown (KeyCode.A)||Input.GetButtonDown("XPad")) {
 					PlaceClone(0);
+					clonetimer = 0;
 				}
 				if (Input.GetKeyDown (KeyCode.Z)||Input.GetButtonDown("YPad")) {
 					PlaceClone(1);
+					clonetimer = 0;
 				}
 				if (Input.GetKeyDown (KeyCode.E)||Input.GetButtonDown("BPad")) {
 					PlaceClone(2);
+					clonetimer = 0;
 				}
-			//}
-		}
+			}
+
+		} else clonetimer ++;
 	}
 
 	void FireBullet() {
