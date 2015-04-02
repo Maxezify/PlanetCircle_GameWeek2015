@@ -45,12 +45,12 @@ public class HealthManager : MonoBehaviour {
 		heartclone = Instantiate (image, transform.position, Quaternion.identity) as GameObject;
 		heartclone.transform.parent = oldHeartClone.transform;
 		heartclone.transform.position = new Vector3(transform.position.x, transform.position.y -0.5f * gameObject.transform.childCount, transform.position.z);
-		Debug.Log (gameObject.transform.childCount);
+		//Debug.Log (gameObject.transform.childCount);
 		heartsArray [n] = heartclone;
 	}
 
 	public void RemoveHeart(int n) {
-		DestroyObject (heartsArray [n]);
+		Destroy (heartsArray [n]);
 		//Debug.Log (heartsArray [gameObject.transform.childCount]);
 
 	}

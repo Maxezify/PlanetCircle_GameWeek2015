@@ -90,13 +90,11 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 		//HealthManager.GetInstance ().LoseLife ();
 		if (life <= 0) {
-			Death ();
+			if(!isClone)
+				GameManager.GameOver();
+			else
+				Destroy(gameObject);
 		}
-	}
-	
-	public virtual void Death() {
-		DestroyObject(gameObject);
-	}
-
+	}	
 }
 
