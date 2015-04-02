@@ -34,7 +34,13 @@ public class PlayerBoardsManager : MonoBehaviour {
 	void InputFire()  {
 		if (fireTimer >= fireRate) {
 			if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
-				FireBullet ();
+				if (bulletPrefab.name == "RocketBulletPlayer") {
+					FireBullet ();
+					FireBullet ();
+					FireBullet ();
+				} else {
+					FireBullet ();
+				}
 				fireTimer = 0;
 			} 
 		} else fireTimer ++;
@@ -92,7 +98,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damages) {
-
+		Debug.Log (bulletPrefab.name);
 		life -= damages;
 		if (!isClone) HealthManager.GetInstance ().RemoveHeart (life);
 
@@ -104,5 +110,14 @@ public class PlayerBoardsManager : MonoBehaviour {
 				Destroy(gameObject);
 		}
 	}	
+
+	public void ChangeFireRate() {
+		if (bulletPrefab.name == "RocketBulletPlayer") {
+			fireRate = 45;
+		}
+		if (bulletPrefab.name == "TripleBulletPlayer") {
+			fireRate = 30;
+		}
+	}
 }
 

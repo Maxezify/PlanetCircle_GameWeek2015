@@ -20,7 +20,9 @@ public class PowerUpDrop : MonoBehaviour {
 			clonesArray = GameObject.FindGameObjectsWithTag("Player");
 			for(int i = 0; i < clonesArray.Length; i++)
 			{
+
 				clonesArray[i].GetComponent<PlayerBoardsManager>().bulletPrefab = PowerUpBullet;
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBoardsManager>().ChangeFireRate();
 			}
 			Destroy(gameObject);
 		}
