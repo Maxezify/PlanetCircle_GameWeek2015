@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class EnemyTypeStandard : Enemy {
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update ();

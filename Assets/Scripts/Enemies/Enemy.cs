@@ -14,7 +14,9 @@ public abstract class Enemy : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Instantiate(spawnEffect, transform.position, Quaternion.identity);
+		if(spawnEffect != null) {
+			Instantiate(spawnEffect, transform.position, transform.rotation);
+		}
 	}
 	
 	// Update is called once per frame
