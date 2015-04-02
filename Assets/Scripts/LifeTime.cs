@@ -10,7 +10,6 @@ public class LifeTime : MonoBehaviour {
 
 	void Update() {
 		timeBeforeDeath++;
-
 		if(timeBeforeDeath >= lifetime)
 		{
 			Destroy (gameObject);

@@ -9,6 +9,7 @@ public class EarthManager : MonoBehaviour {
 	public int lifeMax;
 	public List<Material> Surface = new List<Material>();
 	public List<Material> Shaders = new List<Material>();
+	private bool destroy = false;
 
 	private static EarthManager instance;
 
@@ -44,6 +45,15 @@ public class EarthManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		EarthMovement();
+
+		if(destroy == true){
+			if(transform.GetChild (1).gameObject.transform.GetChild (transform.GetChild (1).gameObject.transform.childCount-1).GetComponent<ParticleSystem>().isStopped == true){
+				transform.GetChild (1).gameObject.SetActive(false);
+				Destroy(gameObject);
+				GameManager.GameOver();
+				destroy = false;
+			}
+		}
 	}
 
 	void EarthMovement() {
@@ -63,8 +73,10 @@ public class EarthManager : MonoBehaviour {
 		}
 		if (life <= 0) {
 			Debug.Log("You Win");
-			Destroy(gameObject);
-			GameManager.GameOver();
+			transform.GetChild (1).gameObject.SetActive(true);
+			transform.GetComponent<MeshRenderer>().enabled = false;
+			destroy = true;
+
 		}
 	}
 }

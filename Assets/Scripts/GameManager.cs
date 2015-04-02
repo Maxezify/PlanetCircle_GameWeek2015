@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 		if(PlayerPrefs.HasKey("Level")){
 			currentLevel = PlayerPrefs.GetInt("Level");
 		}else{
-			PlayerPrefs.SetInt("Level", 1);
+			PlayerPrefs.SetInt("Level", 0);
 			currentLevel = PlayerPrefs.GetInt("Level");
 		}
 		//gameState = StateType.GAMESTART;
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
 		yield return new WaitForSeconds(1.0f);
 
-		yield return new WaitForSeconds(1.0f);
+		//yield return new WaitForSeconds(1.0f);
 		
 		yield return new WaitForSeconds(1.0f);
 
