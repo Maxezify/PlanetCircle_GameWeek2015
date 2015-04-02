@@ -14,17 +14,15 @@ public class RocketFoe : FoeBullet {
 		}
 	}
 
-//	protected virtual void Update () {
-//		if(targetPlayer != null) {
-//			Quaternion rotation = Quaternion.LookRotation(targetPlayer.transform.position - transform.position);
-//			rotation.x = 0;
-//			rotation.y = 0;
-//			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5.0f);
-//			transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
-//		}
-//		else
-//		{
-//			base.Update();
-//		}
-//	}
+	protected virtual void Update () {
+		if(targetPlayer != null) {
+			Quaternion rotation = Quaternion.LookRotation(targetPlayer.transform.position - transform.position);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5.0f);
+			transform.Translate(Vector3.forward * ProjectileSpeed * Time.deltaTime);
+		}
+		else
+		{
+			base.Update();
+		}
+	}
 }
