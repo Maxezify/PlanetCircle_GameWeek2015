@@ -36,8 +36,9 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 	void InputFire()  {
 		if(laser){
-			if (Input.GetButton("Fire") || Input.GetAxis("FirePad")>0)	{
+			if (Input.GetButton("Fire") || Input.GetAxis("FirePad")>0){
 				if(!lasering){
+					//DEBUT DU SON
 					Vector3 posis = transform.position;
 					lazor = Instantiate(bulletPrefab, posis, transform.parent.transform.rotation) as GameObject;
 					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
@@ -45,6 +46,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 					lasering = true;
 				}
 			}else if(lasering == true){
+				//FIN DU SON
 				lasering = false;
 				Destroy (lazor);
 			}
