@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\OnclickButtonMenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bullets\BulletsPlayer\LaserBulletPlayer.cs">
     <Files>
-      <File FileName="Assets\Scripts\OnclickButtonMenu.cs" Line="23" Column="35" />
-      <File FileName="Assets\Scripts\BlinkText.cs" Line="60" Column="24" />
-      <File FileName="Assets\Scripts\PlayerBoardsManager.cs" Line="59" Column="56" />
-      <File FileName="Assets\Scripts\EarthManager.cs" Line="30" Column="1" />
+      <File FileName="Assets\Scripts\Bullets\BulletsPlayer\StandardBulletPlayer.cs" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="139" Column="8" />
+      <File FileName="Assets\Scripts\EarthManager.cs" Line="34" Column="6" />
+      <File FileName="Assets\Scripts\HealthManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerBoardsManager.cs" Line="56" Column="1" />
+      <File FileName="Assets\Scripts\Bullets\PlayerBullet.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\Bullets\BulletsPlayer\LaserBulletPlayer.cs" Line="20" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -16,6 +16,12 @@ public class LaserBulletPlayer : PlayerBullet {
 				timer = 0;
 			}
 		}
+		if (other.tag == "Shield")  {
+			if(timer >= 1.0f){
+				other.transform.GetChild(0).gameObject.GetComponent<Enemy>().TakeDamage(damages);
+				timer = 0;
+			}
+		}
 		if (other.tag == "Earth")  {
 			if(timer >= 1.0f){
 				other.GetComponent<EarthManager>().TakeDamage(damages);

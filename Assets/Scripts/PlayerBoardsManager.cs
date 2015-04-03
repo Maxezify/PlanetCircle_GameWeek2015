@@ -43,10 +43,10 @@ public class PlayerBoardsManager : MonoBehaviour {
 					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
 					lazor.transform.SetParent(transform);
 					lasering = true;
-				}else if(lasering == true){
-					lasering = false;
-					Destroy (lazor);
 				}
+			}else if(lasering == true){
+				lasering = false;
+				Destroy (lazor);
 			}
 		}else{
 			if (fireTimer >= fireRate) {
