@@ -18,9 +18,15 @@ public class PlayerBoardsManager : MonoBehaviour {
 	private int clonetimer = 0;
 	public int cloneRate;
 
+	public AudioClip lazerSound;
+	public AudioClip rocketSound;
+	public AudioClip shootSound;
+
+	private AudioSource source;
+
 	// Use this for initialization
 	void Start () {
-	
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +45,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 			if (Input.GetButton("Fire") || Input.GetAxis("FirePad")>0){
 				if(!lasering){
 					//DEBUT DU SON
+					source.PlayOneShot(lazerSound);
 					Vector3 posis = transform.position;
 					lazor = Instantiate(bulletPrefab, posis, transform.parent.transform.rotation) as GameObject;
 					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
@@ -47,19 +54,23 @@ public class PlayerBoardsManager : MonoBehaviour {
 				}
 			}else if(lasering == true){
 				//FIN DU SON
+				source.Stop ();
 				lasering = false;
 				Destroy (lazor);
 			}
 		}else{
 			if (fireTimer >= fireRate) {
 				if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
+
 					if (bulletPrefab.name == "RocketBulletPlayer") {
 						FireBullet ();
 						FireBullet ();
 						FireBullet ();
+						source.PlayOneShot(rocketSound);
 					} else {
 						FireBullet ();
 						fireTimer = 0;
+						source.PlayOneShot(shootSound);
 					} 
 				} else fireTimer ++;
 			}
