@@ -1,28 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 	
 	private int selection = 1;
 	private int frames = 10; // Le temps qu'il faut attendre entre 2 inputs du stick pour sélectionner une option
 	private int aframes = 10; // le temps qu'il faut attendre entre 2 inputs du bouton A
-	Hashtable optionsPlay;
+	/*Hashtable optionsPlay;
 	Hashtable optionsQuit;
 	Hashtable options2Play;
-	Hashtable options2Quit;
-	public GameObject play;
-	public GameObject quit;
+	Hashtable options2Quit;*/
+	//public GameObject play;
+	//public GameObject quit;
 	
-	public GameObject playLight;
-	public GameObject quitLight;
+	public Button Buttonnew;
+	public Button ButtonContinue;
 	
-	private Vector3 playScaleDefault;
-	private Vector3 quitScaleDefault;
+	//private Vector3 playScaleDefault;
+	//private Vector3 quitScaleDefault;
 	
-	private Vector3 playScaleModif;
-	private Vector3 quitScaleModif;
+	//private Vector3 playScaleModif;
+	//private Vector3 quitScaleModif;
 	
-	public float multiplier = 1.5f;
+	//public float multiplier = 1.5f;
 	
 	// Use this for initialization
 	void Start () {
@@ -31,7 +32,7 @@ public class MenuManager : MonoBehaviour {
 		quitScaleDefault = quit.transform.localScale;
 		
 		playScaleModif = playScaleDefault*multiplier;
-		quitScaleModif = quitScaleDefault*multiplier;
+		quitScaleModif = quitScaleDefault*multiplier;/*
 		
 		optionsPlay = iTween.Hash(
 			"scale", playScaleModif,
@@ -72,12 +73,12 @@ public class MenuManager : MonoBehaviour {
 		
 		if (frames >= 10)
 		{
-			if(Input.GetAxis("VerticalPad") < -0.1f || Input.GetKey(KeyCode.S))
+			if(Input.GetAxis("HorizontalPad") < -0.1f || Input.GetKey(KeyCode.Q))
 			{
 				selection +=1;
 				frames = 1;
 			}
-			else if(Input.GetAxis("VerticalPad") > 0.1f || Input.GetKey(KeyCode.Z))
+			else if(Input.GetAxis("HorizontalPad") > 0.1f || Input.GetKey(KeyCode.D))
 			{
 				selection -=1;
 				frames = 1;
@@ -101,8 +102,8 @@ public class MenuManager : MonoBehaviour {
 		case 1 :
 			/*iTween.ScaleTo(play, optionsPlay);
 			iTween.ScaleTo(quit, options2Quit);*/
-			playLight.GetComponent<Light>().enabled = true;
-			quitLight.GetComponent<Light>().enabled = false;
+			Buttonnew.GetComponent<Image>().color = Color.white;
+			//ButtonContinue.GetComponent<Button>().colors.pressedColor = false;
 			//GameObject.Find("Jouer").iTween.ScaleTo(this.gameObject, options);
 			//GameObject.Find("Quit").guiText.color = Color.white;
 			break;
@@ -110,8 +111,8 @@ public class MenuManager : MonoBehaviour {
 		case 2 :
 			//GameObject.Find("Quit").iTween.ScaleTo(this.gameObject, options);
 			//GameObject.Find("Jouer").guiText.color = Color.white;
-			playLight.GetComponent<Light>().enabled = false;
-			quitLight.GetComponent<Light>().enabled = true;
+			//Buttonnew.GetComponent<Button>().colors.pressedColor = false;
+			ButtonContinue.GetComponent<Image>().color = Color.white;
 			/*iTween.ScaleTo(play, options2Play);
 			iTween.ScaleTo(quit, optionsQuit);*/
 			break;
@@ -121,7 +122,7 @@ public class MenuManager : MonoBehaviour {
 		aframes++;
 		if (aframes >= 10)
 		{
-			if (Input.GetButton("APad") || Input.GetKey(KeyCode.Space))
+			if (Input.GetButtonDown("APad") || Input.GetButtonDown("Space"))
 			{
 				Confirm();
 				aframes = 0;
@@ -136,7 +137,7 @@ public class MenuManager : MonoBehaviour {
 	void Confirm()
 	{
 		
-		if(selection == 1)
+		if(selection == 1 && Input.GetButtonDown("Space"))
 		{
 			Application.LoadLevel("Gameplay-Clean");
 		}

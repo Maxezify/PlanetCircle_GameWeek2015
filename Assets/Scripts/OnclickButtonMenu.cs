@@ -3,14 +3,31 @@ using System.Collections;
 
 public class OnclickButtonMenu : MonoBehaviour {
 
+	public GameObject Buttonnew;
+	public GameObject ButtonContinue;
+	public GameObject ButtonPress;
+
+
 	// Use this for initialization
 	void Start () {
+
+		Buttonnew.SetActive(false);
+		ButtonContinue.SetActive(false);
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (Input.GetButtonDown("Space") || Input.GetButtonDown("APad"))	{
+
+			Buttonnew.SetActive(true);
+			ButtonContinue.SetActive(true);
+			ButtonPress.SetActive(false);
+
+
+		}
 
 		}
 
