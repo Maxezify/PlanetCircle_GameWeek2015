@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour {
 	public GameObject spawnEffect;
 	
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		if(spawnEffect != null) {
 			Instantiate(spawnEffect, transform.position, transform.rotation);
 		}
@@ -44,7 +44,8 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	public virtual void Death() {
-		if(dropPowerUp != null)
+		float isDroped = Random.Range(0,10);
+		if(dropPowerUp != null && isDroped > 7)
 		{
 			Instantiate(dropPowerUp,transform.position, Quaternion.identity);
 		}

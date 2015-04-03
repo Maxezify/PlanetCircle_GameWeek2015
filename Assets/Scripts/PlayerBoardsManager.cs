@@ -13,6 +13,10 @@ public class PlayerBoardsManager : MonoBehaviour {
 	public bool laser = false;
 	public bool lasering = false;
 	private GameObject lazor;
+	private int fireTimer = 0;
+	public int fireRate;
+	private int clonetimer = 0;
+	public int cloneRate;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +31,6 @@ public class PlayerBoardsManager : MonoBehaviour {
 		InputClone ();
 		//InputGetClone();
 
-
 	}
 
 
@@ -40,32 +43,45 @@ public class PlayerBoardsManager : MonoBehaviour {
 					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
 					lazor.transform.SetParent(transform);
 					lasering = true;
+				}else if(lasering == true){
+					lasering = false;
+					Destroy (lazor);
 				}
-			}else if(lasering == true){
-				lasering = false;
-				Destroy (lazor);
 			}
 		}else{
-			if (Input.GetButtonDown("Fire") || Input.GetAxis("FirePad")>0)	{
-				FireBullet();
+			if (fireTimer >= fireRate) {
+				if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
+					if (bulletPrefab.name == "RocketBulletPlayer") {
+						FireBullet ();
+						FireBullet ();
+						FireBullet ();
+					} else {
+						FireBullet ();
+						fireTimer = 0;
+					} 
+				} else fireTimer ++;
 			}
 		}
 	}
 
 	void InputClone()  {
-		if (!isClone) {
-			//if (life > 1) {
+		if (clonetimer >= cloneRate) {
+			if (!isClone) {
 				if (Input.GetKeyDown (KeyCode.A)||Input.GetButtonDown("XPad")) {
 					PlaceClone(0);
+					clonetimer = 0;
 				}
 				if (Input.GetKeyDown (KeyCode.Z)||Input.GetButtonDown("YPad")) {
 					PlaceClone(1);
+					clonetimer = 0;
 				}
 				if (Input.GetKeyDown (KeyCode.E)||Input.GetButtonDown("BPad")) {
 					PlaceClone(2);
+					clonetimer = 0;
 				}
-			//}
-		}
+			}
+
+		} else clonetimer ++;
 	}
 
 	void FireBullet() {
@@ -100,7 +116,7 @@ public class PlayerBoardsManager : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damages) {
-
+		Debug.Log (bulletPrefab.name);
 		life -= damages;
 		if (!isClone) HealthManager.GetInstance ().RemoveHeart (life);
 
@@ -112,5 +128,14 @@ public class PlayerBoardsManager : MonoBehaviour {
 				Destroy(gameObject);
 		}
 	}	
+
+	public void ChangeFireRate() {
+		if (bulletPrefab.name == "RocketBulletPlayer") {
+			fireRate = 45;
+		}
+		if (bulletPrefab.name == "TripleBulletPlayer") {
+			fireRate = 20;
+		}
+	}
 }
 
