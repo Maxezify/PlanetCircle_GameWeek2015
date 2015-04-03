@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 	private float timer = 0;
 	public int difficulty;
 
-	static StateType gameState = StateType.GAMESTART;
+	static StateType gameState;
 
 	private static GameManager _instance;
 
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 			difficulty = PlayerPrefs.GetInt("Difficulty");
 		}
 		//gameState = StateType.GAMESTART;
+		//GameObject.Find("fond").transform.gameObject.GetComponent<Renderer>().material = Fonds[(int)Mathf.Floor(Random.Range (0,Fonds.Count-1))];
 	}
 
 	void Awake() 
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
 		switch(gameState){
 		case StateType.GAMESTART:
 			GameStart(difficulty);
+
 			break;
 		case StateType.PLAYING:
 			break;
@@ -109,19 +111,21 @@ public class GameManager : MonoBehaviour
 
 
 		timer+=0.1f;
-
-		if(timer >= 50f-difficulty){
-			SpawnEnnemies(difficulty);
-			timer = 0;
+		if(!false){
+			if(timer >= 50f-difficulty){
+				SpawnEnnemies(difficulty);
+				timer = 0;
+			}
 		}
 
 	}
 
 	public void GameStart(int difficulty){
-		//Au start de chaque niveau, utilisé pour initialiser les vagues and shit
-		SpawnPlanet(difficulty);
-		SpawnEnnemies(difficulty);
-		gameState = StateType.PLAYING;
+			//Au start de chaque niveau, utilisé pour initialiser les vagues and shit
+			dead = false;
+			SpawnPlanet(difficulty);
+			SpawnEnnemies(difficulty);
+			gameState = StateType.PLAYING;
 	}
 
 	public static void GameOver(){
@@ -155,6 +159,14 @@ public class GameManager : MonoBehaviour
 		//!!PLANETE ALEATOIRE VISUELLEMENT PV en fonction du currentLevel
 		GameObject go = Instantiate(planet) as GameObject;
 		go.GetComponent<EarthManager>().lifeMax = (difficulty+1)*10;
+	}
+
+	public static void DestroyGameObjectsWithTag(string tag)
+	{
+		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+		foreach (GameObject target in gameObjects) {
+			GameObject.Destroy(target);
+		}
 	}
 
 	IEnumerator waitBeforeRespawn(){

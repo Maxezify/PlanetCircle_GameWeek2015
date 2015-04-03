@@ -9,6 +9,7 @@ public class EarthManager : MonoBehaviour {
 	public int lifeMax;
 	public List<Material> Surface = new List<Material>();
 	public List<Material> Shaders = new List<Material>();
+	public List<Material> Fonds = new List<Material>();
 	private bool destroy = false;
 
 	private static EarthManager instance;
@@ -21,6 +22,7 @@ public class EarthManager : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		GameObject.Find("fond").transform.gameObject.GetComponent<Renderer>().material = Fonds[(int)Mathf.Floor(Random.Range (0,Fonds.Count-1))];
 		float rand = Random.Range (0,1f);
 		bool projector;
 		if(rand >=0.5f)
@@ -75,6 +77,7 @@ public class EarthManager : MonoBehaviour {
 			//Debug.Log("You Win");
 			transform.GetChild (1).gameObject.SetActive(true);
 			transform.GetComponent<MeshRenderer>().enabled = false;
+			GameManager.DestroyGameObjectsWithTag("Enemy");
 			destroy = true;
 
 		}
