@@ -10,6 +10,9 @@ public class PlayerBoardsManager : MonoBehaviour {
 	public GameObject[] cloneArray = new GameObject[3];
 	protected GameObject cloneInstanciated;
 	public bool isClone;
+	public bool laser = false;
+	public bool lasering = false;
+	private GameObject lazor;
 	private int fireTimer = 0;
 	public int fireRate;
 	private int clonetimer = 0;
@@ -32,18 +35,35 @@ public class PlayerBoardsManager : MonoBehaviour {
 
 
 	void InputFire()  {
-		if (fireTimer >= fireRate) {
-			if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
-				if (bulletPrefab.name == "RocketBulletPlayer") {
-					FireBullet ();
-					FireBullet ();
-					FireBullet ();
-				} else {
-					FireBullet ();
+		if(laser){
+			if (Input.GetButton("Fire") || Input.GetAxis("FirePad")>0){
+				if(!lasering){
+					//DEBUT DU SON
+					Vector3 posis = transform.position;
+					lazor = Instantiate(bulletPrefab, posis, transform.parent.transform.rotation) as GameObject;
+					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
+					lazor.transform.SetParent(transform);
+					lasering = true;
 				}
-				fireTimer = 0;
-			} 
-		} else fireTimer ++;
+			}else if(lasering == true){
+				//FIN DU SON
+				lasering = false;
+				Destroy (lazor);
+			}
+		}else{
+			if (fireTimer >= fireRate) {
+				if (Input.GetButtonDown ("Fire") || Input.GetAxis ("FirePad") > 0) {
+					if (bulletPrefab.name == "RocketBulletPlayer") {
+						FireBullet ();
+						FireBullet ();
+						FireBullet ();
+					} else {
+						FireBullet ();
+						fireTimer = 0;
+					} 
+				} else fireTimer ++;
+			}
+		}
 	}
 
 	void InputClone()  {

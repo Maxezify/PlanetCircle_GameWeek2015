@@ -5,6 +5,7 @@ public class PowerUpDrop : MonoBehaviour {
 
 	public GameObject PowerUpBullet;
 	protected GameObject[] clonesArray;
+	public bool laser;
 	// Use this for initialization
 	void Start () {
 		transform.LookAt(GameObject.FindGameObjectWithTag("Earth").transform.position);
@@ -22,6 +23,7 @@ public class PowerUpDrop : MonoBehaviour {
 			{
 
 				clonesArray[i].GetComponent<PlayerBoardsManager>().bulletPrefab = PowerUpBullet;
+				clonesArray[i].GetComponent<PlayerBoardsManager>().laser = laser;
 				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBoardsManager>().ChangeFireRate();
 			}
 			Destroy(gameObject);
