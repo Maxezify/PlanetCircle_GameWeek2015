@@ -10,6 +10,9 @@ public class PlayerBoardsManager : MonoBehaviour {
 	public GameObject[] cloneArray = new GameObject[3];
 	protected GameObject cloneInstanciated;
 	public bool isClone;
+	public bool laser = false;
+	public bool lasering = false;
+	private GameObject lazor;
 
 	// Use this for initialization
 	void Start () {
@@ -24,15 +27,28 @@ public class PlayerBoardsManager : MonoBehaviour {
 		InputClone ();
 		//InputGetClone();
 
+
 	}
 
 
 	void InputFire()  {
-
-		if (Input.GetButtonDown("Fire") || Input.GetAxis("FirePad")>0)	{
-
-			FireBullet();
-
+		if(laser){
+			if (Input.GetButton("Fire") || Input.GetAxis("FirePad")>0)	{
+				if(!lasering){
+					Vector3 posis = transform.position;
+					lazor = Instantiate(bulletPrefab, posis, transform.parent.transform.rotation) as GameObject;
+					lazor.transform.LookAt(new Vector3(0,0,lazor.transform.position.z));
+					lazor.transform.SetParent(transform);
+					lasering = true;
+				}
+			}else if(lasering == true){
+				lasering = false;
+				Destroy (lazor);
+			}
+		}else{
+			if (Input.GetButtonDown("Fire") || Input.GetAxis("FirePad")>0)	{
+				FireBullet();
+			}
 		}
 	}
 

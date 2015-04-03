@@ -31,7 +31,7 @@ public class EarthManager : MonoBehaviour {
 		transform.GetChild(0).gameObject.SetActive(projector);
 
 		if(projector){
-			Debug.Log (transform.GetChild(0).GetComponent<Projector>().material.shader);
+			//Debug.Log (transform.GetChild(0).GetComponent<Projector>().material.shader);
 			transform.GetChild(0).GetComponent<Projector>().material = Shaders[(int)Mathf.Floor(Random.Range (0,Shaders.Count-1))];
 		}
 
@@ -69,10 +69,10 @@ public class EarthManager : MonoBehaviour {
 			//Debug.Log("Midlife");
 		}
 		if (life <= Mathf.Floor(lifeMax/4)) {
-			Debug.Log("Quarterlife ?");
+			//Debug.Log("Quarterlife ?");
 		}
 		if (life <= 0) {
-			Debug.Log("You Win");
+			//Debug.Log("You Win");
 			transform.GetChild (1).gameObject.SetActive(true);
 			transform.GetComponent<MeshRenderer>().enabled = false;
 			destroy = true;

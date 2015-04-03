@@ -1,15 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LaserBulletPlayer : MonoBehaviour {
+public class LaserBulletPlayer : PlayerBullet {
+	private float timer;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start(){
+		timer = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void OnParticleCollision (GameObject other) {
+		timer += 0.1f;
+		if (other.tag == "Enemy")  {
+			if(timer >= 1.0f){
+				other.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<Enemy>().TakeDamage(damages);
+				timer = 0;
+			}
+		}
+		if (other.tag == "Earth")  {
+			if(timer >= 1.0f){
+				other.GetComponent<EarthManager>().TakeDamage(damages);
+				timer = 0;
+			}
+		}
+		if(other.tag == "Player" || other.tag == "PowerUp" || other.tag == "Bullet") {
+			
+		}
 	}
 }
