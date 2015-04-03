@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 09fdfdfa0ebbdc74c8041f14c24c67f2
-timeCreated: 1427726085
+timeCreated: 1428053352
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bulletPrefab: {instanceID: 0}
+  - lazerSound: {fileID: 8300000, guid: bfc8af8153cc3b646abff5a00aae482d, type: 3}
+  - rocketSound: {fileID: 8300000, guid: 93063bd5fe56d69418fb947271e5820a, type: 3}
+  - shootSound: {fileID: 8300000, guid: 4eac51f276ccf2a4dbfda5323468f451, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

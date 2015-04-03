@@ -24,7 +24,6 @@ public class OnclickButtonMenu : MonoBehaviour {
 
 			Buttonnew.SetActive(true);
 			ButtonContinue.SetActive(true);
-			ButtonPress.SetActive(false);
 
 
 		}
