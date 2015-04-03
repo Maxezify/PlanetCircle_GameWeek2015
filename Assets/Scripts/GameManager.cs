@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> Pool = new List<GameObject>();
 	public GameObject planet;
 	private float timer = 0;
+	public int difficulty;
 
 	static StateType gameState = StateType.GAMESTART;
 
@@ -43,15 +44,16 @@ public class GameManager : MonoBehaviour
 		RESPAWN,
 		MENU,         
 		OPTIONS,
-		NEXTLEVEL
+		NEXTLEVEL,
+		NEWGAME
 	};
 	void Start(){
 
-		if(PlayerPrefs.HasKey("Level")){
-			currentLevel = PlayerPrefs.GetInt("Level");
+		if(PlayerPrefs.HasKey("Difficulty")){
+			difficulty = PlayerPrefs.GetInt("Difficulty");
 		}else{
-			PlayerPrefs.SetInt("Level", 0);
-			currentLevel = PlayerPrefs.GetInt("Level");
+			PlayerPrefs.SetInt("Difficulty", 1);
+			difficulty = PlayerPrefs.GetInt("Difficulty");
 		}
 		//gameState = StateType.GAMESTART;
 	}
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
 		
 		switch(gameState){
 		case StateType.GAMESTART:
-			GameStart(currentLevel);
+			GameStart(difficulty);
 			break;
 		case StateType.PLAYING:
 			break;
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour
 			gameState = StateType.RESPAWN;
 			break;
 		case StateType.RESPAWN:
-			StartCoroutine(ChangeLevel(currentLevel));
+			StartCoroutine(ChangeLevel(1));
 			break;
 		case StateType.PAUSE:
 			
@@ -96,8 +98,10 @@ public class GameManager : MonoBehaviour
 			gameState = StateType.PLAYING;
 			break;
 		case StateType.NEXTLEVEL:
-			//StartCoroutine(ChangeLevel(PlayerPrefs.GetInt("Level")));
-			StartCoroutine(ChangeLevel(0));
+			StartCoroutine(ChangeLevel(1));
+			break;
+		case StateType.NEWGAME:
+			StartCoroutine(ChangeLevel(1));
 			break;
 		default:
 			break;
@@ -106,17 +110,17 @@ public class GameManager : MonoBehaviour
 
 		timer+=0.1f;
 
-		if(timer >= currentLevel+20f){
-			SpawnEnnemies(currentLevel);
+		if(timer >= 50f-difficulty){
+			SpawnEnnemies(difficulty);
 			timer = 0;
 		}
 
 	}
 
-	public void GameStart(int currentLevel){
+	public void GameStart(int difficulty){
 		//Au start de chaque niveau, utilisé pour initialiser les vagues and shit
-		SpawnPlanet(currentLevel);
-		SpawnEnnemies(currentLevel);
+		SpawnPlanet(difficulty);
+		SpawnEnnemies(difficulty);
 		gameState = StateType.PLAYING;
 	}
 
@@ -124,15 +128,22 @@ public class GameManager : MonoBehaviour
 		gameState = StateType.GAMEOVER;
 	}
 
+	public static void Continue(){
+		gameState = StateType.GAMEOVER;
+	}
+
+	public static void NewGame(){
+		gameState = StateType.NEWGAME;
+	}
+
 	public static void GG(){
-		PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level")+1 );
+		PlayerPrefs.SetInt("Difficulty", PlayerPrefs.GetInt("Difficulty")+1 );
 		gameState = StateType.NEXTLEVEL;
 	}
 
 	public void SpawnEnnemies(int nbr){
-		//nbr == currentlevel pour le moment
-		for(int i = 0; i< nbr+1;i++){
-			//!!CHANGER LA ROTATION DE DEPART
+		//nbr == difficulty pour le moment
+		for(int i = 0; i< (int)Mathf.Floor((nbr+1)/2);i++){
 			Quaternion quat = Quaternion.identity;
 			quat.eulerAngles = new Vector3(0,0,Random.Range (0,360f));
 			GameObject go = Instantiate(Enemies[(int)Mathf.Floor(Random.Range(0, Enemies.Count))], new Vector3(0,0,0), quat) as GameObject;
@@ -140,10 +151,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void SpawnPlanet(int currentLevel){
+	public void SpawnPlanet(int Difficulty){
 		//!!PLANETE ALEATOIRE VISUELLEMENT PV en fonction du currentLevel
 		GameObject go = Instantiate(planet) as GameObject;
-		go.GetComponent<EarthManager>().lifeMax = currentLevel+3;
+		go.GetComponent<EarthManager>().lifeMax = (difficulty+1)*10;
 	}
 
 	IEnumerator waitBeforeRespawn(){
@@ -160,15 +171,15 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	IEnumerator ChangeLevel(int levelName){
+	public IEnumerator ChangeLevel(int levelName){
 		Pool.Clear ();
-		currentLevel = levelName;
+		difficulty = PlayerPrefs.GetInt("Difficulty");
 		AsyncOperation operation = Application.LoadLevelAsync(levelName);
 		yield return operation;
 	}
 
 	void OnLevelWasLoaded(int lvl){
-		if(lvl == currentLevel){
+		if(lvl == 1){
 			timer = 0;
 			gameState = StateType.GAMESTART;
 		}

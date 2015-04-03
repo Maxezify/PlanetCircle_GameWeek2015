@@ -50,7 +50,7 @@ public class EarthManager : MonoBehaviour {
 			if(transform.GetChild (1).gameObject.transform.GetChild (transform.GetChild (1).gameObject.transform.childCount-1).GetComponent<ParticleSystem>().isStopped == true){
 				transform.GetChild (1).gameObject.SetActive(false);
 				Destroy(gameObject);
-				GameManager.GameOver();
+				GameManager.GG();
 				destroy = false;
 			}
 		}
